@@ -31,21 +31,52 @@
 
     <div class="col-md-9">
       <div class="d-flex flex-wrap justify-content-start ">
+        {% if products %}
         {% for p in products %}
-        <a href="{% url 'item:detail' p.id%}" class="m-3" style="text-decoration: none;">
-          <div class="card shadow-lg border-0" style="width: 18rem; background-color: #fff;">
-            <img src="{{ p.image.url }}" class="card-img-top img-fluid" alt="{{ p.name }}"
-              style="height: 150px; object-fit: cover;">
-            <div class="card-body">
-              <h5 class="card-title" style="color: #000;">{{ p.name }}</h5>
-              <div class="row p-0 ">
-              <h6 class="col" style="color: #000;">${{ p.price }}</h6>
-              <p class="card-text col" style="color: #000;">{{ p.created_at|date:"F j" }}</p>
+          <a href="{% url 'item:detail' p.id%}" class="m-3" style="text-decoration: none;">
+            <div class="card shadow-lg border-0" style="width: 18rem; background-color: #fff;">
+              <img src="{{ p.image.url }}" class="card-img-top img-fluid" alt="{{ p.name }}"
+                style="height: 150px; object-fit: cover;">
+              <div class="card-body">
+                <h5 class="card-title" style="color: #000;">{{ p.name }}</h5>
+                <div class="row p-0 ">
+                <h6 class="col" style="color: #000;">${{ p.price }}</h6>
+                <p class="card-text col" style="color: #000;">{{ p.created_at|date:"F j" }}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
+          </a>
         {% endfor %}
+      {% else %}
+      <style>
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      
+        .animate-fadeIn {
+          animation: fadeIn 2s ease-in-out;
+        }
+      
+        .center-div {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh; /* Adjust based on your container's height */
+        }
+      </style>
+      
+      <div class="animate-fadeIn m-5">
+        <div class="text-center" style="color: black; font-size: 20px;">
+          <i class="fab fa-h1 display-6"> No products available.</i>
+        </div>
+      </div>
+      
+      {% endif %}
       </div>
     </div>
   </div>

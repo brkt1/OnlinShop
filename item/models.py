@@ -18,7 +18,7 @@ class Item (models.Model):
     phone = models.IntegerField(null=True)
     telegram_link = models.URLField(max_length=200, blank=True )
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    category = models.ForeignKey(Category,on_delete=models.CASCADE, default=' 1')
+    category = models.ForeignKey(Category,on_delete=models.CASCADE, default=' 1' , null=True)
     is_sold = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User , on_delete=models.CASCADE)
